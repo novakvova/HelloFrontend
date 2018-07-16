@@ -15,11 +15,12 @@ export class QuestionComponent {
 
     ngOnInit() {
         this.quizId=this.router.snapshot.paramMap.get('quizId');
-        console.log(this.quizId);
+        //console.log(this.quizId);
         this.api.questionSelected.subscribe(q=>this.question=q);
     }
 
     post(question) {
+        question.quizId=this.quizId;
         this.api.postQuestion(question);
         // console.log(question);
     }
