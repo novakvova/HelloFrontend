@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {FormBuilder, Validator, Validators} from '@angular/forms';
-import { ApiService } from './api.service'
+import { AuthService } from './auth.service'
 
 @Component({
     templateUrl: './register.component.html'
@@ -8,11 +8,14 @@ import { ApiService } from './api.service'
 export class RegisterComponent {
 
     form;
-    constructor(private api: ApiService) { }
-
-    ngOnInit() {
-        //this.api.quizSelected.subscribe(q=>this.quiz=q);
-    }
-
-    
+    constructor(private auth: AuthService, private fb: FormBuilder) {
+        this.form=fb.group({
+            email: ['', [Validators.required,Validators.email]],
+            password: ['', Validators.required]
+        });
+     }
+     register()
+     {
+         console.log(this.form);
+     }   
 }
